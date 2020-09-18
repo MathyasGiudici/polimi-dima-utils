@@ -32,5 +32,5 @@ User added by default in the database:
 If you want use the authorization add the header:
 'Authorization': 'Bearer ' + token
 
-Command line per accedere al log del server
+Command line to look at the logs of the server
 > heroku logs --app polimi-dima-server --tail
