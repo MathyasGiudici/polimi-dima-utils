@@ -1,0 +1,407 @@
+swagger: "2.0"
+info:
+  description: "RestfulAPI for the DIMA Project Mobile app for Mapping outdoor air\
+    \ quality"
+  version: "1.0.1"
+  title: "polimi-dima RestfulAPI"
+host: "polimi-dima-server.herokuapp.com"
+basePath: "/api"
+tags:
+- name: "arduino data"
+  description: "functions to store arduino data"
+- name: "user"
+  description: "functions to manage users that collects data"
+schemes:
+- "https"
+paths:
+  /data:
+    get:
+      tags:
+      - "arduino data"
+      summary: "Get all arduino data"
+      operationId: "getData"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500"
+        required: false
+        type: "integer"
+        default: 20
+        maximum: 500
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Datum"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "ArduinoData"
+    post:
+      tags:
+      - "arduino data"
+      summary: "Post a specific arduino datum"
+      operationId: "postData"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "String from arduino"
+        required: true
+        schema:
+          $ref: "#/definitions/DataReq"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Datum"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "ArduinoData"
+  /data/findByDate:
+    get:
+      tags:
+      - "arduino data"
+      summary: "Get all arduino data"
+      operationId: "getDataByDate"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "startDate"
+        in: "query"
+        description: "Start date for the filter"
+        required: true
+        type: "string"
+        format: "date-time"
+      - name: "endDate"
+        in: "query"
+        description: "End date for the filter"
+        required: true
+        type: "string"
+        format: "date-time"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Datum"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "ArduinoData"
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Login with a form"
+      operationId: "postUserLogin"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthReq"
+      responses:
+        "200":
+          description: "Successfull Login"
+          schema:
+            $ref: "#/definitions/AuthRes"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+  /user/logout:
+    post:
+      tags:
+      - "user"
+      summary: "Logout with a form"
+      operationId: "postUserLogout"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Successfull Logout"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Register into the store"
+      operationId: "postUserRegister"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Successfull Registration"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+  /user/me:
+    get:
+      tags:
+      - "user"
+      summary: "Get user with email"
+      operationId: "getUserMe"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+    put:
+      tags:
+      - "user"
+      summary: "Update a specific user"
+      operationId: "putUserMe"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "New user informations. If password is empty the server know that you don't want to change your password"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+    delete:
+      tags:
+      - "user"
+      summary: "Delete a specific user"
+      operationId: "deleteUserMe"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "string"
+            format: "email"
+            description: "Email of the user"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found"
+      x-swagger-router-controller: "User"
+definitions:
+  Datum:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      timestamp:
+        type: "string"
+      temperature:
+        type: "number"
+        format: "double"
+        minimum: 0
+      humidity:
+        type: "number"
+        format: "double"
+        minimum: 0
+        maximum: 100
+      pressure:
+        type: "number"
+        format: "double"
+        minimum: 0
+      altitude:
+        type: "number"
+        format: "double"
+        minimum: 0
+      tvocs:
+        type: "number"
+        format: "double"
+        minimum: 0
+      eco2:
+        type: "number"
+        format: "double"
+        minimum: 0
+      pm05:
+        type: "number"
+        format: "double"
+        minimum: 0
+      pm1:
+        type: "number"
+        format: "double"
+        minimum: 0
+      pm25:
+        type: "number"
+        format: "double"
+        minimum: 0
+      pm4:
+        type: "number"
+        format: "double"
+        minimum: 0
+      pm10:
+        type: "number"
+        format: "double"
+        minimum: 0
+      latitude:
+        type: "number"
+        format: "double"
+        minimum: 0
+      longitude:
+        type: "number"
+        format: "double"
+        minimum: 0
+    example:
+      altitude: 0.5637376656633328
+      tvocs: 0.23021358869347652
+      latitude: 0.12315135367772556
+      pm10: 0.7386281948385884
+      pressure: 0.5962133916683182
+      eco2: 0.7061401241503109
+      pm25: 0.20271230230023218
+      pm1: 0.3616076749251911
+      pm05: 0.9301444243932576
+      pm4: 0.4145608029883936
+      temperature: 0.6027456183070403
+      humidity: 14.658129805029452
+      id: 0
+      timestamp: "2020-04-14T00:00:00Z"
+      longitude: 0.10246457001441578
+  User:
+    type: "object"
+    required:
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+        format: "email"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+        format: "password"
+      gender:
+        type: "string"
+        enum:
+        - "female"
+        - "male"
+      birthDay:
+        type: "string"
+        format: "date"
+    example:
+      email: "user@mail.polimi.it"
+      firstName: "Mario"
+      lastName: "Rossi"
+      password: "1234"
+      gender: "male"
+      birthDay: "1990-07-21"
+  AuthReq:
+    type: "object"
+    required:
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+        format: "email"
+      password:
+        type: "string"
+        format: "password"
+    example:
+      email: "user@mail.polimi.it"
+      password: "1234"
+  AuthRes:
+    type: "object"
+    properties:
+      user:
+        $ref: "#/definitions/User"
+      token:
+        type: "string"
+    example:
+      user:
+        email: "user@mail.polimi.it"
+        firstName: "Mario"
+        lastName: "Rossi"
+        gender: "female"
+        birthDay: "1990-07-21"
+      token: "h37h7.3hduhew92dj-j28d2j"
+  DataReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "string"
+    example:
+      data: "28.2;28;102700;122;107;31;2;2;5;8;10;45.478509979181595;9.23018664121628"
