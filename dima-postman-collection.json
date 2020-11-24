@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "1235d4fe-ac13-4dc6-a776-22aa39444ade",
+		"name": "dima",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@dimaproject.it\",\n    \"password\": \"passwordSegret@130\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/login",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/logout",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/logout",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@dimaproject.it\",\n    \"firstName\": \"User\",\n    \"lastName\": \"Register\",\n    \"password\": \"1234\",\n    \"gender\": \"male\",\n    \"birthDay\": \"1996-01-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/register",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/me",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/me",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/me",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@dimaproject.it\",\n    \"firstName\": \"User\",\n    \"lastName\": \"Register PUT2\",\n    \"password\": \"12345\",\n    \"gender\": \"male\",\n    \"birthDay\": \"1996-01-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/me",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/user/me",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/user/me",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/data",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": \"1.0;0;0;0;0;0;0;0;0;0;0;0.0;0.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/data",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://polimi-dima-server.herokuapp.com/api/data/findByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://polimi-dima-server.herokuapp.com/api/data/findByDate?startDate=2020-06-01T11:00:00.000Z&endDate=2020-06-01T13:00:00.000Z",
+					"protocol": "https",
+					"host": [
+						"polimi-dima-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"data",
+						"findByDate"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2020-06-01T11:00:00.000Z"
+						},
+						{
+							"key": "endDate",
+							"value": "2020-06-01T13:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoie1wiZW1haWxcIjpcImFkbWluQGRpbWFwcm9qZWN0Lml0XCIsXCJmaXJzdE5hbWVcIjpcIkFkbWluXCIsXCJsYXN0TmFtZVwiOlwiRGltYSBQcm9qZWN0XCIsXCJnZW5kZXJcIjpcImZlbWFsZVwiLFwiYmlydGhEYXlcIjpcIjE5OTAtMDctMjFUMDA6MDA6MDAuMDAwWlwifSIsImlhdCI6MTU5MTQzODAxNCwiZXhwIjoxNTkxNjEwODE0fQ.hIb_7y80ehiaClRD9pR69zcvmWtMoq_dsY9jCnowoqY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ac91cbb0-96db-4d27-bdfd-05c4d46f5803",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b6d11ed5-aec2-458d-b3b2-f65d05b790c7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
